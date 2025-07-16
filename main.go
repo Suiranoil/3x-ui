@@ -13,11 +13,12 @@ import (
 	"x-ui/database"
 	"x-ui/logger"
 	"x-ui/sub"
+	"x-ui/util/crypto"
 	"x-ui/web"
 	"x-ui/web/global"
 	"x-ui/web/service"
-	"x-ui/util/crypto"
 
+	"github.com/joho/godotenv"
 	"github.com/op/go-logging"
 )
 
@@ -38,6 +39,8 @@ func runWebServer() {
 	default:
 		log.Fatalf("Unknown log level: %v", config.GetLogLevel())
 	}
+
+	godotenv.Load()
 
 	err := database.InitDB(config.GetDBPath())
 	if err != nil {
@@ -229,7 +232,7 @@ func updateTgbotSetting(tgBotToken string, tgBotChatid string, tgBotRuntime stri
 	}
 }
 
-func updateSetting(port int, username string, password string, webBasePath string, listenIP string) {
+func updateSetting(port int, username string, password string, webBasePath string, listenIP string, resetTwoFactor bool) {
 	err := database.InitDB(config.GetDBPath())
 	if err != nil {
 		fmt.Println("Database initialization failed:", err)
@@ -263,6 +266,17 @@ func updateSetting(port int, username string, password string, webBasePath strin
 			fmt.Println("Failed to set base URI path:", err)
 		} else {
 			fmt.Println("Base URI path set successfully")
+		}
+	}
+
+	if resetTwoFactor {
+		err := settingService.SetTwoFactorEnable(false)
+
+		if err != nil {
+			fmt.Println("Failed to reset two-factor authentication:", err)
+		} else {
+			settingService.SetTwoFactorToken("")
+			fmt.Println("Two-factor authentication reset successfully")
 		}
 	}
 
@@ -373,6 +387,7 @@ func main() {
 	var reset bool
 	var show bool
 	var getCert bool
+	var resetTwoFactor bool
 	settingCmd.BoolVar(&reset, "reset", false, "Reset all settings")
 	settingCmd.BoolVar(&show, "show", false, "Display current settings")
 	settingCmd.IntVar(&port, "port", 0, "Set panel port number")
@@ -380,6 +395,7 @@ func main() {
 	settingCmd.StringVar(&password, "password", "", "Set login password")
 	settingCmd.StringVar(&webBasePath, "webBasePath", "", "Set base path for Panel")
 	settingCmd.StringVar(&listenIP, "listenIP", "", "set panel listenIP IP")
+	settingCmd.BoolVar(&resetTwoFactor, "resetTwoFactor", false, "Reset two-factor authentication settings")
 	settingCmd.BoolVar(&getListen, "getListen", false, "Display current panel listenIP IP")
 	settingCmd.BoolVar(&getCert, "getCert", false, "Display current certificate settings")
 	settingCmd.StringVar(&webCertFile, "webCert", "", "Set path to public key file for panel")
@@ -424,7 +440,7 @@ func main() {
 		if reset {
 			resetSetting()
 		} else {
-			updateSetting(port, username, password, webBasePath, listenIP)
+			updateSetting(port, username, password, webBasePath, listenIP, resetTwoFactor)
 		}
 		if show {
 			showSetting(show)
