@@ -50,6 +50,7 @@
 "fail" = "Помилка"
 "comment" = "Коментар"
 "success" = "Успішно"
+"lastOnline" = "Був(ла) онлайн"
 "getVersion" = "Отримати версію"
 "install" = "Встановити"
 "clients" = "Клієнти"
@@ -70,6 +71,20 @@
 "emptyBalancersDesc" = "Немає доданих балансувальників."
 "emptyReverseDesc" = "Немає доданих зворотних проксі."
 "somethingWentWrong" = "Щось пішло не так"
+
+[subscription]
+"title" = "Інформація про підписку"
+"subId" = "ID підписки"
+"status" = "Статус"
+"downloaded" = "Завантажено"
+"uploaded" = "Відвантажено"
+"expiry" = "Термін дії"
+"totalQuota" = "Загальна квота"
+"individualLinks" = "Окремі посилання"
+"active" = "Активна"
+"inactive" = "Неактивна"
+"unlimited" = "Безліміт"
+"noExpiry" = "Без строку"
 
 [menu]
 "theme" = "Тема"
@@ -151,6 +166,8 @@
 "getConfigError" = "Виникла помилка під час отримання файлу конфігурації"
 
 [pages.inbounds]
+"allTimeTraffic" = "Загальний трафік"
+"allTimeTrafficUsage" = "Загальне використання за весь час"
 "title" = "Вхідні"
 "totalDownUp" = "Всього надісланих/отриманих"
 "totalUsage" = "Всього використанно"
@@ -165,6 +182,8 @@
 "details" = "Деталі"
 "transportConfig" = "Транспорт"
 "expireDate" = "Тривалість"
+"createdAt" = "Створено"
+"updatedAt" = "Оновлено"
 "resetTraffic" = "Скинути трафік"
 "addInbound" = "Додати вхідний"
 "generalActions" = "Загальні дії"
@@ -225,6 +244,9 @@
 "exportInbound" = "Експортувати вхідні"
 "import" = "Імпорт"
 "importInbound" = "Імпортувати вхідний"
+"periodicTrafficResetTitle" = "Скидання трафіку"
+"periodicTrafficResetDesc" = "Автоматично скидати лічильник трафіку через певні проміжки часу"
+"lastReset" = "Останнє скидання"
 
 [pages.client]
 "add" = "Додати клієнта"
@@ -244,6 +266,12 @@
 "renew" = "Автоматичне оновлення"
 "renewDesc" = "Автоматичне поновлення після закінчення терміну дії. (0 = вимкнено)(одиниця: день)"
 
+[pages.inbounds.periodicTrafficReset]
+"never" = "Ніколи"
+"daily" = "Щодня"
+"weekly" = "Щотижня"
+"monthly" = "Щомісяця"
+
 [pages.inbounds.toasts]
 "obtain" = "Отримати"
 "updateSuccess" = "Оновлення пройшло успішно"
@@ -262,6 +290,7 @@
 "trafficGetError" = "Помилка отримання даних про трафік"
 "getNewX25519CertError" = "Помилка при отриманні сертифіката X25519."
 "getNewmldsa65Error" = "Помилка при отриманні сертифіката mldsa65."
+"getNewVlessEncError" = "Помилка при отриманні сертифіката VlessEnc."
 
 [pages.inbounds.stream.general]
 "request" = "Запит"
@@ -342,6 +371,7 @@
 "subSettings" = "Підписка"
 "subEnable" = "Увімкнути службу підписки"
 "subEnableDesc" = "Вмикає службу підписки."
+"subJsonEnable" = "Увімкнути/вимкнути JSON-кінець підписки незалежно."
 "subTitle" = "Назва Підписки"
 "subTitleDesc" = "Назва, яка відображається у VPN-клієнті"
 "subListen" = "Слухати IP"
@@ -561,19 +591,20 @@
 "resetOutboundTrafficError" = "Помилка скидання вихідного трафіку"
 
 [tgbot]
-"keyboardClosed" = "❌ Спеціальна клавіатура закрита!"
+"keyboardClosed" = "❌ Клавіатуру закрито!"
 "noResult" = "❗ Немає результату!"
-"noQuery" = "❌ Запит не знайдено! Скористайтеся командою ще раз!"
+"noQuery" = "❌ Запит не знайдено! Будь ласка, використовуйте команду ще раз!"
 "wentWrong" = "❌ Щось пішло не так!"
-"noIpRecord" = "❗ Немає IP-запису!"
-"noInbounds" = "❗ Вхідних не знайдено!"
-"unlimited" = "♾ Необмежений (скинути)"
+"noIpRecord" = "❗ Немає запису IP!"
+"noInbounds" = "❗ Вхідні не знайдені!"
+"unlimited" = "♾ Необмежено (Скинути)"
 "add" = "Додати"
 "month" = "Місяць"
 "months" = "Місяці"
 "day" = "День"
 "days" = "Дні"
-"hours" = "Годинник"
+"hours" = "Години"
+"minutes" = "Хвилини"
 "unknown" = "Невідомо"
 "inbounds" = "Вхідні"
 "clients" = "Клієнти"

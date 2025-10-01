@@ -7,7 +7,6 @@ yellow='\033[0;33m'
 plain='\033[0m'
 
 cur_dir=$(pwd)
-show_ip_service_lists=("https://api.ipify.org" "https://4.ident.me")
 
 # check root
 [[ $EUID -ne 0 ]] && echo -e "${red}Fatal error: ${plain} Please run this script with root privilege \n " && exit 1
@@ -57,8 +56,11 @@ install_base() {
     opensuse-tumbleweed)
         zypper refresh && zypper -q install -y wget curl tar timezone
         ;;
+    alpine)
+        apk update && apk add wget curl tar tzdata
+        ;;
     *)
-        apt-get update && apt install -y -q wget curl tar tzdata
+        apt-get update && apt-get install -y -q wget curl tar tzdata
         ;;
     esac
 }
@@ -73,10 +75,18 @@ config_after_install() {
     local existing_hasDefaultCredential=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'hasDefaultCredential: .+' | awk '{print $2}')
     local existing_webBasePath=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'webBasePath: .+' | awk '{print $2}')
     local existing_port=$(/usr/local/x-ui/x-ui setting -show true | grep -Eo 'port: .+' | awk '{print $2}')
-
-    for ip_service_addr in "${show_ip_service_lists[@]}"; do
-        local server_ip=$(curl -s --max-time 3 ${ip_service_addr} 2>/dev/null)
-        if [ -n "${server_ip}" ]; then
+    local URL_lists=(
+        "https://api4.ipify.org"
+		"https://ipv4.icanhazip.com"
+		"https://v4.api.ipinfo.io/ip"
+		"https://ipv4.myexternalip.com/raw"
+		"https://4.ident.me"
+		"https://check-host.net/ip"
+    )
+    local server_ip=""
+    for ip_address in "${URL_lists[@]}"; do
+        server_ip=$(curl -s --max-time 3 "${ip_address}" 2>/dev/null | tr -d '[:space:]')
+        if [[ -n "${server_ip}" ]]; then
             break
         fi
     done
@@ -170,7 +180,11 @@ install_x-ui() {
 
     # Stop x-ui service and remove old resources
     if [[ -e /usr/local/x-ui/ ]]; then
-        systemctl stop x-ui
+        if [[ $release == "alpine" ]]; then
+            rc-service x-ui stop
+        else
+            systemctl stop x-ui
+        fi
         rm /usr/local/x-ui/ -rf
     fi
 
@@ -194,10 +208,18 @@ install_x-ui() {
     chmod +x /usr/bin/x-ui
     config_after_install
 
-    cp -f x-ui.service /etc/systemd/system/
-    systemctl daemon-reload
-    systemctl enable x-ui
-    systemctl start x-ui
+    if [[ $release == "alpine" ]]; then
+        wget -O /etc/init.d/x-ui https://raw.githubusercontent.com/MHSanaei/3x-ui/main/x-ui.rc
+        chmod +x /etc/init.d/x-ui
+        rc-update add x-ui
+        rc-service x-ui start
+    else
+        cp -f x-ui.service /etc/systemd/system/
+        systemctl daemon-reload
+        systemctl enable x-ui
+        systemctl start x-ui
+    fi
+
     echo -e "${green}x-ui ${tag_version}${plain} installation finished, it is running now..."
     echo -e ""
     echo -e "┌───────────────────────────────────────────────────────┐

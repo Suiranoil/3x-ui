@@ -50,6 +50,7 @@
 "fail" = "失敗"
 "comment" = "コメント"
 "success" = "成功"
+"lastOnline" = "最終オンライン"
 "getVersion" = "バージョン取得"
 "install" = "インストール"
 "clients" = "クライアント"
@@ -70,6 +71,20 @@
 "emptyBalancersDesc" = "追加されたバランサーはありません。"
 "emptyReverseDesc" = "追加されたリバースプロキシはありません。"
 "somethingWentWrong" = "エラーが発生しました"
+
+[subscription]
+"title" = "サブスクリプション情報"
+"subId" = "サブスクリプションID"
+"status" = "ステータス"
+"downloaded" = "ダウンロード"
+"uploaded" = "アップロード"
+"expiry" = "有効期限"
+"totalQuota" = "合計クォータ"
+"individualLinks" = "個別リンク"
+"active" = "有効"
+"inactive" = "無効"
+"unlimited" = "無制限"
+"noExpiry" = "期限なし"
 
 [menu]
 "theme" = "テーマ"
@@ -151,6 +166,8 @@
 "getConfigError" = "設定ファイルの取得中にエラーが発生しました"
 
 [pages.inbounds]
+"allTimeTraffic" = "総トラフィック"
+"allTimeTrafficUsage" = "これまでの総使用量"
 "title" = "インバウンド一覧"
 "totalDownUp" = "総アップロード / ダウンロード"
 "totalUsage" = "総使用量"
@@ -165,6 +182,8 @@
 "details" = "詳細情報"
 "transportConfig" = "トランスポート設定"
 "expireDate" = "有効期限"
+"createdAt" = "作成"
+"updatedAt" = "更新"
 "resetTraffic" = "トラフィックリセット"
 "addInbound" = "インバウンド追加"
 "generalActions" = "一般操作"
@@ -225,6 +244,9 @@
 "exportInbound" = "インバウンドルールをエクスポート"
 "import" = "インポート"
 "importInbound" = "インバウンドルールをインポート"
+"periodicTrafficResetTitle" = "トラフィックリセット"
+"periodicTrafficResetDesc" = "指定された間隔でトラフィックカウンタを自動的にリセット"
+"lastReset" = "最後のリセット"
 
 [pages.client]
 "add" = "クライアント追加"
@@ -244,6 +266,12 @@
 "renew" = "自動更新"
 "renewDesc" = "期限が切れた後に自動更新。（0 = 無効）（単位：日）"
 
+[pages.inbounds.periodicTrafficReset]
+"never" = "なし"
+"daily" = "毎日"
+"weekly" = "毎週"
+"monthly" = "毎月"
+
 [pages.inbounds.toasts]
 "obtain" = "取得"
 "updateSuccess" = "更新が成功しました"
@@ -262,6 +290,7 @@
 "trafficGetError" = "トラフィックの取得中にエラーが発生しました"
 "getNewX25519CertError" = "X25519証明書の取得中にエラーが発生しました。"
 "getNewmldsa65Error" = "mldsa65証明書の取得中にエラーが発生しました。"
+"getNewVlessEncError" = "VlessEnc証明書の取得中にエラーが発生しました。"
 
 [pages.inbounds.stream.general]
 "request" = "リクエスト"
@@ -342,6 +371,7 @@
 "subSettings" = "サブスクリプション設定"
 "subEnable" = "サブスクリプションサービスを有効にする"
 "subEnableDesc" = "サブスクリプションサービス機能を有効にする"
+"subJsonEnable" = "JSON サブスクリプションのエンドポイントを個別に有効/無効にする。"
 "subTitle" = "サブスクリプションタイトル"
 "subTitleDesc" = "VPNクライアントに表示されるタイトル"
 "subListen" = "監視IP"
@@ -561,21 +591,22 @@
 "resetOutboundTrafficError" = "送信トラフィックのリセットエラー"
 
 [tgbot]
-"keyboardClosed" = "❌ カスタムキーボードが閉じられました！"
+"keyboardClosed" = "❌ キーボードを閉じました！"
 "noResult" = "❗ 結果がありません！"
-"noQuery" = "❌ クエリが見つかりませんでした！もう一度コマンドを使用してください！"
-"wentWrong" = "❌ 問題が発生しました！"
-"noIpRecord" = "❗ IP記録がありません！"
-"noInbounds" = "❗ インバウンド接続が見つかりません！"
-"unlimited" = "♾ 無制限"
+"noQuery" = "❌ クエリが見つかりません！コマンドを再利用してください！"
+"wentWrong" = "❌ 何かがうまくいかなかった！"
+"noIpRecord" = "❗ IPレコードがありません！"
+"noInbounds" = "❗ インバウンドが見つかりません！"
+"unlimited" = "♾ 無制限（リセット）"
 "add" = "追加"
 "month" = "月"
-"months" = "月"
+"months" = "ヶ月"
 "day" = "日"
-"days" = "日"
+"days" = "日間"
 "hours" = "時間"
+"minutes" = "分"
 "unknown" = "不明"
-"inbounds" = "インバウンド接続"
+"inbounds" = "インバウンド"
 "clients" = "クライアント"
 "offline" = "🔴 オフライン"
 "online" = "🟢 オンライン"

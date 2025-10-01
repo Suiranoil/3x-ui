@@ -50,6 +50,7 @@
 "fail" = "Ошибка"
 "comment" = "Комментарий"
 "success" = "Успешно"
+"lastOnline" = "Был(а) в сети"
 "getVersion" = "Узнать версию"
 "install" = "Установка"
 "clients" = "Клиенты"
@@ -70,6 +71,20 @@
 "emptyBalancersDesc" = "Нет добавленных балансировщиков."
 "emptyReverseDesc" = "Нет добавленных реверс-прокси."
 "somethingWentWrong" = "Что-то пошло не так"
+
+[subscription]
+"title" = "Информация о подписке"
+"subId" = "ID подписки"
+"status" = "Статус"
+"downloaded" = "Загружено"
+"uploaded" = "Отправлено"
+"expiry" = "Срок действия"
+"totalQuota" = "Общий лимит"
+"individualLinks" = "Индивидуальные ссылки"
+"active" = "Активна"
+"inactive" = "Неактивна"
+"unlimited" = "Безлимит"
+"noExpiry" = "Без срока"
 
 [menu]
 "theme" = "Тема"
@@ -151,6 +166,8 @@
 "getConfigError" = "Произошла ошибка при получении конфигурационного файла"
 
 [pages.inbounds]
+"allTimeTraffic" = "Общий трафик"
+"allTimeTrafficUsage" = "Общее использование за все время"
 "title" = "Инбаунды"
 "totalDownUp" = "Объем отправленного/полученного трафика"
 "totalUsage" = "Всего трафика"
@@ -165,6 +182,8 @@
 "details" = "Подробнее"
 "transportConfig" = "Транспорт"
 "expireDate" = "Дата окончания"
+"createdAt" = "Создано"
+"updatedAt" = "Обновлено"
 "resetTraffic" = "Сброс трафика"
 "addInbound" = "Создать инбаунд"
 "generalActions" = "Общие действия"
@@ -225,6 +244,9 @@
 "exportInbound" = "Экспорт инбаундов"
 "import" = "Импортировать"
 "importInbound" = "Импорт инбаундов"
+"periodicTrafficResetTitle" = "Сброс трафика"
+"periodicTrafficResetDesc" = "Автоматический сброс счетчика трафика через указанные интервалы"
+"lastReset" = "Последний сброс"
 
 [pages.client]
 "add" = "Создать клиента"
@@ -244,6 +266,12 @@
 "renew" = "Автопродление"
 "renewDesc" = "Автопродление после истечения срока действия. (0 = отключить)(единица: день)"
 
+[pages.inbounds.periodicTrafficReset]
+"never" = "Никогда"
+"daily" = "Ежедневно"
+"weekly" = "Еженедельно"
+"monthly" = "Ежемесячно"
+
 [pages.inbounds.toasts]
 "obtain" = "Получить"
 "updateSuccess" = "Обновление прошло успешно"
@@ -262,6 +290,7 @@
 "trafficGetError" = "Ошибка получения данных о трафике"
 "getNewX25519CertError" = "Ошибка при получении сертификата X25519."
 "getNewmldsa65Error" = "Ошибка при получении сертификата mldsa65."
+"getNewVlessEncError" = "Ошибка при получении сертификата VlessEnc."
 
 [pages.inbounds.stream.general]
 "request" = "Запрос"
@@ -342,6 +371,7 @@
 "subSettings" = "Подписка"
 "subEnable" = "Включить подписку"
 "subEnableDesc" = "Функция подписки с отдельной конфигурацией"
+"subJsonEnable" = "Включить/отключить JSON-эндпоинт подписки независимо."
 "subTitle" = "Заголовок подписки"
 "subTitleDesc" = "Название подписки, которое видит клиент в VPN клиенте"
 "subListen" = "Прослушивание IP"
@@ -574,6 +604,7 @@
 "day" = "День"
 "days" = "Дней"
 "hours" = "Часов"
+"minutes" = "Минуты"
 "unknown" = "Неизвестно"
 "inbounds" = "Инбаунды"
 "clients" = "Клиенты"
